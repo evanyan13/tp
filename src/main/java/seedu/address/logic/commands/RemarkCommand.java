@@ -28,8 +28,8 @@ public class RemarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "r/ Likes to swim.";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Job: ";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Job: ";
 
     private final Index index;
     private final Remark remark;
@@ -69,7 +69,10 @@ public class RemarkCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Job jobToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String jobTitle = String.valueOf(jobToEdit.getCompany());
+        String message = !remark.value.isEmpty()
+                ? MESSAGE_ADD_REMARK_SUCCESS + jobTitle
+                : MESSAGE_DELETE_REMARK_SUCCESS + jobTitle;
         return String.format(message, jobToEdit);
     }
 
